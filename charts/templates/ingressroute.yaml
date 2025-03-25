@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: parking-spot-tracker-route
+  namespace: parkers
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`152.53.124.121`)
+    kind: Rule
+    services:
+    - name: parking-spot-tracker-svc
+      port: 3000
+  tls:
+    secretName: parking-spot-tracker-tls

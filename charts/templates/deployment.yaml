@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parking-spot-tracker
+  namespace: parkers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: parking-spot-tracker
+  template:
+    metadata:
+      labels:
+        app: parking-spot-tracker
+    spec:
+      containers:
+      - name: parking-spot-tracker
+        image: localhost:5000/parkers/parking-spot-tracker:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
