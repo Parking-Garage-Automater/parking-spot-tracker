@@ -33,9 +33,9 @@ async fn main() {
     }));
 
     let app = Router::new()
-        .route("/management/health", get(|| async { "OK" }))
-        .route("/parking", post(post_garage_update))
-        .route("/parking", get(get_garage_status))
+        .route("/pst/management/health", get(|| async { "OK" }))
+        .route("/pst/parking", post(post_garage_update))
+        .route("/pst/parking", get(get_garage_status))
         .with_state(parking_garage);
 
     let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
