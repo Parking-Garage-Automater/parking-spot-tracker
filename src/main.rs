@@ -25,7 +25,7 @@ struct ParkingGarageData {
 
 #[tokio::main]
 async fn main() {
-    println!("Hello, world!");
+    println!("Parking spot tracker running.");
 
     let parking_garage = Arc::new(RwLock::new(ParkingGarageStatus {
         lot: HashMap::new(),
@@ -33,9 +33,9 @@ async fn main() {
     }));
 
     let app = Router::new()
-        .route("/pst/management/health", get(|| async { "OK" }))
-        .route("/pst/parking", post(post_garage_update))
-        .route("/pst/parking", get(get_garage_status))
+        .route("/pt/management/health", get(|| async { "OK" }))
+        .route("/pt/parking", post(post_garage_update))
+        .route("/pt/parking", get(get_garage_status))
         .with_state(parking_garage);
 
     let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
