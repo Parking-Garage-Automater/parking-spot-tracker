@@ -5,6 +5,9 @@ use std::sync::Arc;
 use axum::extract::State;
 use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;
+use tower_http::cors::CorsLayer;
+use axum::http::header::CONTENT_TYPE;
+use axum::http::{HeaderValue, Method};
 
 struct ParkingGarageStatus {
     lot: HashMap<String, bool>,
